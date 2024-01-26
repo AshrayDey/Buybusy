@@ -1,0 +1,26 @@
+.filterContainer{
+    width: 250px;
+    background-color: rgb(121, 177, 226);
+    padding: 1rem;
+    border-radius: 8px;
+    
+    .firstContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        span{
+            font-weight: 500;
+            font-size: 18px;
+        }
+        input{
+            width: 90%;
+        }
+    }
+    .checkboxContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+}
