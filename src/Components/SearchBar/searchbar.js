@@ -1,22 +1,22 @@
-import React from 'react'
-import styles from "./searchbar.module.scss"
+import React from 'react';
+import styles from './searchbar.module.scss';
 
-import { useSearch } from '../../Contexts/searchContext';
+import { useSearch } from '../../Contexts/SearchContext';
 
-export  const Searchbar=()=> {
-  const {setQuery,query}=useSearch()
+export const Searchbar = () => {
+  const { setQuery, query } = useSearch();
 
-  const handleSearch = (event) =>{
+  const handleSearch = event => {
     const inputValue = event.target.value;
     setQuery(inputValue);
-  }
+  };
 
   return (
     <div className={styles.container}>
-        <div className={styles.Inputs}>
-            <input type="text" placeholder='Search' onChange={handleSearch} value={query}/>
-        </div>
-        <div className={styles.dataResult}></div>
+      <div className={styles.Inputs}>
+        <input type="text" placeholder="Search" onChange={handleSearch} value={query} />
+      </div>
+      <div className={styles.dataResult}></div>
     </div>
-  )
-}
+  );
+};

@@ -1,9 +1,8 @@
-import { useProduct } from "../../Contexts/productContext";
-import styles from "./cart.module.scss";
+import { useProduct } from '../../Contexts/ProductContext';
+import styles from './cart.module.scss';
 
 export const Cart = () => {
-  const { cart, total, decrementQuant, incrementQuant, removeFromCart } =
-    useProduct();
+  const { cart, total, decrementQuant, incrementQuant, removeFromCart } = useProduct();
   return (
     <>
       <div className={styles.container1}>
@@ -13,7 +12,7 @@ export const Cart = () => {
             <th>Quantity</th>
             <th>Subtotal</th>
           </tr>
-          {cart.map((item) => (
+          {cart.map(item => (
             <tr key={item.id}>
               <td>
                 <div className={styles.product}>
@@ -27,17 +26,11 @@ export const Cart = () => {
                 </div>
               </td>
               <td>
-                <span
-                  className={styles.minus}
-                  onClick={() => decrementQuant(item)}
-                >
+                <span className={styles.minus} onClick={() => decrementQuant(item)}>
                   -
                 </span>
                 <input type="number" value={item.quantity} />
-                <span
-                  className={styles.plus}
-                  onClick={() => incrementQuant(item)}
-                >
+                <span className={styles.plus} onClick={() => incrementQuant(item)}>
                   +
                 </span>
               </td>

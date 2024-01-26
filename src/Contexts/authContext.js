@@ -1,38 +1,55 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import React from "react";
+import React from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../firebaseinnit';
 
-// Firebase
-import { addDoc, collection, doc, onSnapshot } from "firebase/firestore";
-import { db } from "../firebaseinnit";
-
-// Toast Notify
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-const authContext = createContext();
+const AuthContext = React.createContext();
 
 export const useAuth = () => {
-  const value = useContext(authContext);
+  const value = React.useContext(AuthContext);
   return value;
 };
 export const AuthContextProvider = ({ children }) => {
+  const [authStore, setAuthStore] = React.useState({
+    userList: [],
+    loggedIn: false,
+    currentUser: undefined,
+    updateAuthStore: () => void 0
+  });
+
+  const updateAuthStore = React.useCallback(
+    data => {
+      setAuthStore(prev => {
+        return {
+          ...prev,
+          ...data
+        };
+      });
+    },
+    [setAuthStore]
+  );
+
+  React.useEffect(() => {
+    onSnapshot(collection(db, 'Users'), snapshot => {
+      const users = snapshot.docs.map(doc => {
+        return {
+          id: doc.id,
+          ...doc.data()
+        };
+      });
+      setAuthStore({
+        userList: users
+      });
+    });
+  }, []);
+
   return (
-    <authContext.Provider
+    <AuthContext.Provider
       value={{
-        loggedIn,
-        setLoggedIn,
-        loading,
-        setLoading,
-        signIn,
-        userList,
-        logOut,
-        signUp,
-        currUser,
-        setCurrUser,
+        ...authStore,
+        updateAuthStore
       }}
     >
-      <ToastContainer />
       {children}
-    </authContext.Provider>
-  ))
+    </AuthContext.Provider>
+  );
 };

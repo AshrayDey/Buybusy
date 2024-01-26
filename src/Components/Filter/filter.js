@@ -1,14 +1,12 @@
 import React from 'react';
-import styles from './filter.module.scss'
+import styles from './filter.module.scss';
 
-import { useSearch } from '../../Contexts/searchContext';
-
+import { useSearch } from '../../Contexts/SearchContext';
 
 export const FilterComponent = () => {
-  
-  const {priceRange, setPriceRange,handleFilter}=useSearch();
+  const { priceRange, setPriceRange, handleFilter } = useSearch();
 
-  const handleSliderChange = (event) => {
+  const handleSliderChange = event => {
     setPriceRange([parseInt(event.target.value, 10), priceRange[1]]);
   };
 
@@ -33,32 +31,26 @@ export const FilterComponent = () => {
       </div>
 
       <div className={styles.checkboxContainer}>
-          <label htmlFor="men">
-            <input type="checkbox" id='men'  onChange={()=>handleFilter(0)}/>
-            <span >Men's Clothing</span>
-          </label>
-        
-          <label htmlFor="women">
-            <input type="checkbox" id='women'  onChange={()=>handleFilter(1)}/>
-            <span>Women's Clothing</span>
-          </label>
-        
-          <label htmlFor="jewel">
-            <input type="checkbox" id='jewel'  onChange={()=>handleFilter(2)}/>
-            <span>Jewelery</span>
-          </label>
-     
-          <label htmlFor="electronic">
-            <input type="checkbox" id='electronic' onChange={()=>handleFilter(3)}/>
-            <span>Electronics</span>
-          </label>
-      </div>  
-      
-      
-      
-      
+        <label htmlFor="men">
+          <input type="checkbox" id="men" onChange={() => handleFilter(0)} />
+          <span>Men's Clothing</span>
+        </label>
+
+        <label htmlFor="women">
+          <input type="checkbox" id="women" onChange={() => handleFilter(1)} />
+          <span>Women's Clothing</span>
+        </label>
+
+        <label htmlFor="jewel">
+          <input type="checkbox" id="jewel" onChange={() => handleFilter(2)} />
+          <span>Jewelery</span>
+        </label>
+
+        <label htmlFor="electronic">
+          <input type="checkbox" id="electronic" onChange={() => handleFilter(3)} />
+          <span>Electronics</span>
+        </label>
+      </div>
     </div>
   );
 };
-
-
